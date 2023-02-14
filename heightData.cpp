@@ -65,10 +65,51 @@ string dataName = "people-data.csv";
 
 int main(){
 
+    vector<string> names;
+    vector<string> cities;
+    vector<int> heights;
 
 
-dataTest();
-// printData();
+    ifstream inputFile;
+
+    //accessing the CSV data file
+    inputFile.open("people-data.csv");
+
+    //creating a clear line variable
+    string line = "";
+
+    //reading csv
+    while (getline(inputFile, line)){
+        
+        //variables to parse out line
+        string name;
+        string city;
+        int height;
+        string tempString;
+
+        //creating a string out of the line
+        stringstream inputString(line);
+
+
+        getline(inputString, name, ',');
+        getline(inputString, city, ',');
+        getline(inputString, tempString, ',');
+
+        //making string value into integer value
+        height = atoi(tempString.c_str());
+
+        //placing info into vectors
+        names.push_back(name);
+        cities.push_back(city);
+        heights.push_back(height);
+
+
+    }
+
+    for(int i = 1; i < names.size(); i++) {
+        cout << " " << names[i];
+    }
+
 
 
 }
