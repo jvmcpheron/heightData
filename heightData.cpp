@@ -12,62 +12,19 @@ Jane McPheron
 #include <sstream>
 using namespace std;
 
-//function for grabbing and outputting data from csv file
-void printData(){
-
-string fname;
-cout<<"Enter the file name: ";
-cin>>fname;
- 
-vector<vector<string > > content;
-vector<string> row;
-string line, word;
- 
-fstream file (fname, ios::in);
-if(file.is_open())
-{
-while(getline(file, line))
-{
-row.clear();
- 
-stringstream str(line);
- 
-while(getline(str, word, ','))
-row.push_back(word);
-content.push_back(row);
-}
-}
-else
-cout<<"Could not open the file\n";
- 
-for(int i=0;i<content.size();i++)
-{
-for(int j=0;j<content[i].size();j++)
-{
-cout<<content[i][j] << " ";
-}
-cout<<"\n";
-}
-
-
-}
-
-
-//function testing out how to work with data in different ways
-void dataTest(){
-
-string dataName = "people-data.csv";
-
-
-
-}
+//class to create objecs out of each data row
+class HeightData {       
+  public:             // Access specifier
+    string myName;        
+    string myCity; 
+    int myHeight;
+};
 
 
 int main(){
 
-    vector<string> names;
-    vector<string> cities;
-    vector<int> heights;
+
+    vector<HeightData> allData;
 
 
     ifstream inputFile;
@@ -98,16 +55,20 @@ int main(){
         //making string value into integer value
         height = atoi(tempString.c_str());
 
-        //placing info into vectors
-        names.push_back(name);
-        cities.push_back(city);
-        heights.push_back(height);
+        //placing data into object
+        HeightData dataEntry;
+        dataEntry.myName = name;
+        dataEntry.myCity = city;
+        dataEntry.myHeight = height;
 
+        //putting object into a vector
+        allData.push_back(dataEntry);
 
     }
 
-    for(int i = 1; i < names.size(); i++) {
-        cout << " " << names[i];
+    for(int i = 1; i < allData.size(); i++) {
+        cout << allData[i].myName << " " << allData[i].myCity << " "
+        << allData[i].myHeight << endl;
     }
 
 
