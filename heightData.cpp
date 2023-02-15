@@ -20,10 +20,14 @@ class HeightData {
     int myHeight;
 };
 
+//function for comparing height values
+bool compareNum(const HeightData& a, const HeightData& b) {
+    return a.myHeight > b.myHeight;
+}
 
 int main(){
 
-
+    //declaring vector that will contain all data
     vector<HeightData> allData;
 
 
@@ -66,7 +70,23 @@ int main(){
 
     }
 
-    for(int i = 1; i < allData.size(); i++) {
+    //sorting the vector
+    sort(allData.begin(), allData.end(), compareNum);
+
+
+    //declaring vectors
+    vector<string> nameV;
+    vector<string> cityV;
+    vector<int> heightV;
+
+    //declaring arrays
+    string nameA[allData.size()];
+    string cityA[allData.size()];
+    int heightA[allData.size()];
+
+
+    for(int i = 0; i < allData.size(); i++) {
+
         cout << allData[i].myName << " " << allData[i].myCity << " "
         << allData[i].myHeight << endl;
     }
