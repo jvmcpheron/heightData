@@ -74,23 +74,58 @@ int main(){
     sort(allData.begin(), allData.end(), compareNum);
 
 
-    //declaring vectors
-    vector<string> nameV;
-    vector<string> cityV;
-    vector<int> heightV;
-
     //declaring arrays
     string nameA[allData.size()];
     string cityA[allData.size()];
     int heightA[allData.size()];
 
 
+    //looping through main vector to separate data into 3 arrays
     for(int i = 0; i < allData.size(); i++) {
 
-        cout << allData[i].myName << " " << allData[i].myCity << " "
-        << allData[i].myHeight << endl;
+        nameA[i]= allData[i].myName;
+        cityA[i]= allData[i].myCity;
+        heightA[i] = allData[i].myHeight;
+
+        // cout << nameA[i] << " " << cityA[i] << " "
+        // << heightA[i] << endl;
     }
 
 
+    string keepGoing = "y";
+
+    while (keepGoing == "y"){
+
+    
+        //getting user input for search
+        string search;
+        bool success = false;
+        cout << "What city would you like to know about?";
+        cin >> search;
+
+        //for loop searching array for info
+        for(int i = 0; i < allData.size(); i++) {
+            if (cityA[i] == search){
+                cout<< "The tallest person in " << cityA[i] << " is " 
+                << nameA[i] << " at " << heightA[i] << " inches." << endl;
+
+                //telling computer that the search was successful
+                success = true;
+                break;
+            }
+
+        }
+
+        //telling user computer did not find their search
+        if (success == false){
+            cout << "Sorry, that information is unavailable." << endl;
+        }
+
+
+        //updating while loop variable
+        cout << "Would you like to search for something else? (y/n)";
+        cin >> keepGoing;
+
+    }
 
 }
